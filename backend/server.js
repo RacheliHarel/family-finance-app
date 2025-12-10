@@ -13,6 +13,10 @@ const app = express();
 // הגדרת Middleware (תוכנות ביניים)
 app.use(express.json()); 
 app.use(cors());         
+// הגדרת נתיב בסיסי לבדיקה
+app.get('/', (req, res) => {
+    res.send('Hello World! (from Backend)');
+});
 
 // חיבור לבסיס הנתונים (הקוד הקריטי לחיבור)
 const connectDB = async () => {
@@ -36,6 +40,8 @@ app.get('/', (req, res) => {
 
 // הפעלת השרת
 const PORT = process.env.PORT || 5000;
+
+app.use('/api/transactions', require('./routes/transactionRoutes'));
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

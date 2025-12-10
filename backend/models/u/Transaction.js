@@ -37,7 +37,15 @@ const TransactionSchema = new mongoose.Schema({
         type: Date,
         required: true,
         default: Date.now
-    }
+    },
+    isTitheRequired: { // האם הכנסה זו מחייבת מעשרות? (רלוונטי רק להכנסה)
+        type: Boolean,
+        default: false,
+    },
+    isTitheExpense: { // האם הוצאה זו נחשבת כמעשרות? (רלוונטי רק להוצאה)
+        type: Boolean,
+        default: false,
+    },
 }, {
     timestamps: true // מוסיף שדות created_at ו-updated_at אוטומטית
 });
